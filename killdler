@@ -1,0 +1,21 @@
+#! /bin/bash
+
+f="false"
+
+for arg in $*; do
+    if [ "$arg" = "-f" -o "$arg" = "--full" ]; then
+	f="true"
+    else
+	echo "Unknown argument!"
+	exit
+    fi
+done
+
+killer -w dl
+killer -w axel
+
+if [ "$f" = "true" ]; then
+    killer -w downloader
+fi
+
+unset f

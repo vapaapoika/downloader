@@ -1,0 +1,34 @@
+#! /bin/bash
+
+if [ $# -gt 0 ]; then
+    for arg in $*; do
+	if [ "$arg" = "-y" ]; then
+	    f="y"
+	elif [ "$arg" = "-n" ]; then
+	    f="n"
+	fi
+    done
+fi
+
+if [ ! -f download.sh ]; then
+    echo "'download.sh' does not exist or it's a directory!"
+    exit
+fi
+
+if [ -z $f ]; then
+    read -p "Start first? [y/N] " f
+fi
+
+while [ "for ever" ]; do
+    if [ "`echo $f | tr [:upper:] [:lower:]`" != "y" ]; then
+	sleep 10m
+    else
+	f=""
+    fi
+    killer dl
+    killer axel
+    dl $2
+    echo -en "\nKilled axel\n"
+done
+
+unset f

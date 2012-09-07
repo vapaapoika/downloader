@@ -1,0 +1,27 @@
+#! /bin/bash
+
+if [ $# -eq 0 ]; then
+    echo "Not enough arguments!"
+    exit
+fi
+
+w=""
+
+for arg in $*; do
+    if [ "$arg" = "-w" -o "$arg" = "--word" ]; then
+	w="-w"
+    else
+	echo -n "${arg}... "
+	id=$(ps -A | grep $w "$arg" | tr -s " " | awk '{ print $1 }')
+	if [ "$id" != "" ]; then
+	    for i in $(echo $id | tr "\n" " "); do
+		kill -9 $id
+		echo "killed"
+	    done
+	else
+	    echo "no process with this name!"
+	fi
+    fi
+done
+
+echo "Done!"

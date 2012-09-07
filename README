@@ -1,0 +1,36 @@
+INSTALL
+
+You should run these three lines:
+
+cd downloader
+chmod +x install.sh
+./install.sh
+
+USING
+
+6 programs will be installed
+
+1. dlmaker
+
+Makes download.sh at current directory
+
+2. dllist
+
+Lists downloads
+
+3. downloader
+
+Starts download. You should run "downloader -y" command in one tab and "downloader -n" in another one. (or you can use them as different jobs)
+
+4. killdler
+
+Stops downloader (and the second one will start)
+If you want to kill all downloaders, you can use "-f" argument
+
+5. dl
+
+Starts download without any advanced things
+
+6. killer
+
+This command is not about downloader. It kills every process which has the given name. The "killer" command is used by other commands such as "downloader" or "dl"
